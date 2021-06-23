@@ -14,6 +14,20 @@ export const MONTHS = [
   "Декабрь"
 ];
 
+export const MONTHS2 = [
+  "Января",
+  "Февраля",
+  "Марта",
+  "Апреля",
+  "Мая",
+  "Июня",
+  "Июля",
+  "Августа",
+  "Сентября",
+  "Октября",
+  "Ноября",
+  "Декабря"
+];
 function get_date() {
   let date = new Date();
   date.setDate(date.getDate() + 4);

@@ -213,6 +213,7 @@ function App() {
   }
   /////////////////////////////////////////////////////////////////////////////
   function handleSelectPeriod(event) {
+    addParamToURL(); // сначала очистить
     addParamToURL("period", event.target.value);
     switch (event.target.value) {
       ////////////////////////
@@ -381,14 +382,12 @@ function App() {
       //console.log(state);
     }, 1500);
   }
-  console.log("state", state);
+  //console.log("state", state);
   const { range, enteredTo } = state;
   //const modifiers = { start: range.from, end: enteredTo };
   const disabledDays = { before: new Date() }; //state.range.from };
   const selectedDays = [range.from, { from: range.from, to: enteredTo }]; //o: enteredTo }];
-  /////////////////////////////////////////////////////////
-  // TEST
-  if (state.select.type === "test") alert("test");
+
   let highlighted = state.events.map((v, key) => {
     if (
       state.select.type === "russoft-events" &&
@@ -502,7 +501,9 @@ function App() {
   if (
     // сначала ближайшие
     !(
-      state.select.period === "all-period" ||
+      (state.select.period === "" &&
+        state.range.from === !null &&
+        state.range.to === !null) ||
       state.select.period === "next-week" ||
       state.select.period === "next-month" ||
       state.select.period === "next-half-year" ||

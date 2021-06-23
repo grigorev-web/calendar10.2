@@ -1,5 +1,5 @@
 import { BsClock } from "react-icons/bs";
-
+import { MONTHS2 } from "../types";
 export default function EventDiv(props) {
   /*
   return(
@@ -43,7 +43,13 @@ export default function EventDiv(props) {
         <div className="post__description">{props.event.short_description}</div>
         <div className="post__date">
           <BsClock />
-          <span className="post__time">{props.event.date} </span>
+          <span className="post__time">
+            {new Date(props.event.date).getDate() +
+              " " +
+              MONTHS2[new Date(props.event.date).getMonth()] +
+              " " +
+              new Date(props.event.date).getFullYear()}
+          </span>
         </div>
       </div>
     </div>
