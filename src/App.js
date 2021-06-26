@@ -440,11 +440,12 @@ function App() {
   let events = state.events;
   // console.log("events1", state.events);
   // фильтр по Дате
-  console.log("state", state);
+
   events = events.filter((obj) => {
     let ev = new Date(new Date(obj.date).setHours(12));
     if (
-      (ev > state.range.from && ev < state.range.to) ||
+      (ev > new Date(new Date(state.range.from).setHours(0)) &&
+        ev < state.range.to) ||
       state.range.from == null
     ) {
       count++;
