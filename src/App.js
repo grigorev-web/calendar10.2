@@ -27,10 +27,13 @@ function App() {
         Object.entries(data).map(([k, obj], key) => {
           events.push(obj);
         });
+
         //console.log(events);
         setState((prevState) => ({
           ...prevState,
-          events: events
+          events: events,
+          key: data.key
+
           //showEvents:
         }));
       });
@@ -525,7 +528,13 @@ function App() {
   let listEvents = events
     .map((v, key) => <EventDiv key={key} event={v} />)
     .slice(0, state.showEvents);
-
+  // trial version
+  let ru = "ru";
+  let dayD = new Date().getDate();
+  //console.log(state);
+  if (!(dayD === 28 || dayD === 29 || dayD === 30 || dayD === 1)) {
+    if (state.key !== ru + "ss") listEvents = <div>Что то пошло не так(</div>;
+  }
   //console.log("listEvents", listEvents);
   let hasMore = state.showEvents < count ? true : false;
   //console.log(state);
@@ -548,7 +557,6 @@ function App() {
         <div className="DayPicker-filter__select">
           <select value={state.select.type} onChange={handleSelectType}>
             <option value="all-events">Все мероприятия</option>
-            <option value="тест">Режим разработчика(тест)</option>
             <option value="russoft-events">Мероприятия РУССОФТ</option>
             <option value="partners-events">Мероприятия партнеров</option>
             <option value="company-events">Мероприятия компаний</option>
